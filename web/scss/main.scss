@@ -1,0 +1,54 @@
+$outerMargin: 10px;
+$boxMargin: 3px;
+$infoPanelWidth: 200px;
+$galleryInfoPanelHeight: 50px;
+$lineColour: #444;
+$backgroundColour: #fbfbd8;
+
+html, body {
+  height: 100%;
+  margin: 0;
+  padding: 0;
+  box-sizing: content-box;
+}
+body{
+  font-family: 'Inconsolata', monospace;
+  overflow: hidden;
+  background-color: $backgroundColour;
+}
+#container{
+  display: flex;
+  min-height: 200px;
+  height: calc(100% - #{$outerMargin + $outerMargin});
+  margin: $outerMargin;
+
+  div.visibleBox{
+    border: 1px solid $lineColour;
+    margin: $boxMargin;
+  }
+
+  #gallery {
+    display: flex;
+    flex-direction: column;
+    flex-grow: 1;
+
+    #galleryMain {
+      flex-grow: 1;
+    }
+
+    #galleryInfo {
+      flex-basis: $galleryInfoPanelHeight;
+      flex-shrink: 0;
+      flex-grow: 0;
+    }
+  }
+
+  #info{
+    display: flex;
+    flex-direction: column;
+    flex-grow: 0;
+    flex-shrink: 0;
+    width: $infoPanelWidth;
+  }
+
+}

@@ -1,0 +1,37 @@
+html, body {
+  height: 100%;
+  margin: 0;
+  padding: 0;
+  box-sizing: content-box; }
+
+body {
+  font-family: 'Inconsolata', monospace;
+  overflow: hidden;
+  background-color: #fbfbd8; }
+
+#container {
+  display: flex;
+  min-height: 200px;
+  height: calc(100% - 20px);
+  margin: 10px; }
+  #container div.visibleBox {
+    border: 1px solid #444;
+    margin: 3px; }
+  #container #gallery {
+    display: flex;
+    flex-direction: column;
+    flex-grow: 1; }
+    #container #gallery #galleryMain {
+      flex-grow: 1; }
+    #container #gallery #galleryInfo {
+      flex-basis: 50px;
+      flex-shrink: 0;
+      flex-grow: 0; }
+  #container #info {
+    display: flex;
+    flex-direction: column;
+    flex-grow: 0;
+    flex-shrink: 0;
+    width: 200px; }
+
+/*# sourceMappingURL=main.css.map */
