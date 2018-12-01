@@ -3,7 +3,7 @@ $boxMargin: 3px;
 $infoPanelWidth: 200px;
 $galleryInfoPanelHeight: 50px;
 $lineColour: #444;
-$backgroundColour: #fbfbd8;
+$backgroundColour: #fff;
 
 html, body {
   height: 100%;
@@ -25,6 +25,8 @@ body{
   div.visibleBox{
     border: 1px solid $lineColour;
     margin: $boxMargin;
+    background-color: white;
+    box-shadow: 0px 0px 2px 0px rgba(0,0,0,0.75);
   }
 
   #gallery {

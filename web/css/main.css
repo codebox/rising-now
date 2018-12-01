@@ -7,7 +7,7 @@ html, body {
 body {
   font-family: 'Inconsolata', monospace;
   overflow: hidden;
-  background-color: #fbfbd8; }
+  background-color: #fff; }
 
 #container {
   display: flex;
@@ -16,7 +16,9 @@ body {
   margin: 10px; }
   #container div.visibleBox {
     border: 1px solid #444;
-    margin: 3px; }
+    margin: 3px;
+    background-color: white;
+    box-shadow: 0px 0px 2px 0px rgba(0, 0, 0, 0.75); }
   #container #gallery {
     display: flex;
     flex-direction: column;
