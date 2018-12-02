@@ -106,7 +106,8 @@ const view = (() => {
 
     function buildElement(star) {
         const el = document.createElement('div');
-        el.innerHTML = `${star.name} in ${star.constellation}<br>Type ${star.type}<br>Magnitude ${star.magnitude}`;
+        el.setAttribute('class', 'starData');
+        el.innerHTML = `${star.name} in ${star.constellation} Type ${star.type} Magnitude ${star.magnitude}`;
         return el;
     }
 
