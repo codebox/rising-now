@@ -93,6 +93,30 @@ const view = (() => {
             "Vul" : "Vulpecula"
         };
 
+        const TYPES_TO_COLOURS = {
+            "O5" : "#9db4ff",
+            "B1" : "#a2b9ff",
+            "B3" : "#a7bcff",
+            "B5" : "#aabfff",
+            "B8" : "#afc3ff",
+            "A1" : "#baccff",
+            "A3" : "#c0d1ff",
+            "A5" : "#cad8ff",
+            "F0" : "#e4e8ff",
+            "F2" : "#edeeff",
+            "F5" : "#fbf8ff",
+            "F8" : "#fff9f9",
+            "G2" : "#fff5ec",
+            "G5" : "#fff4e8",
+            "G8" : "#fff1df",
+            "K0" : "#ffebd1",
+            "K4" : "#ffd7ae",
+            "K7" : "#ffc690",
+            "M2" : "#ffbe7f",
+            "M4" : "#ffbb7b",
+            "M6" : "#ffbb7b"
+        };
+
     function buildObj(arr) {
         return {
             name : arr[1] || `Hipparcos ${arr[0]}`,
@@ -111,6 +135,12 @@ const view = (() => {
         return el;
     }
 
+    function starTypeToColour(type) {
+        //TODO see http://www.isthe.com/chongo/tech/astro/HR-temp-mass-table-byhrclass.html
+        const n = type.toUpperCase().substr(0, 2);
+        return TYPES_TO_COLOURS[n] || 'white';
+    }
+
     let offsetX = 0;
     return {
         loading() {
@@ -120,7 +150,12 @@ const view = (() => {
             galleryMain.innerHTML = 'Loaded';
         },
         display(star) {
-            const el = buildElement(buildObj(star));
+            const obj = buildObj(star),
+                el = buildElement(obj),
+                colour = starTypeToColour(obj.type);
+
+            el.style.backgroundColor = colour;
+            el.style.boxShadow = `0px 0px 50px 0px ${colour}`;
             el.style.left = `${offsetX}px`;
             el.style.transitionDuration = `${8 + Math.random() * 4}s`;
             galleryMain.appendChild(el);
