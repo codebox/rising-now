@@ -107,10 +107,11 @@ const view = (() => {
     function buildElement(star) {
         const el = document.createElement('div');
         el.setAttribute('class', 'starData');
-        el.innerHTML = `${star.name} in ${star.constellation} Type ${star.type} Magnitude ${star.magnitude}`;
+        el.innerHTML = `<div class="infoText">${star.name} in ${star.constellation} Type ${star.type} Magnitude ${star.magnitude}</div>`;
         return el;
     }
 
+    let offsetX = 0;
     return {
         loading() {
             galleryMain.innerHTML = 'Loading...';
@@ -120,11 +121,16 @@ const view = (() => {
         },
         display(star) {
             const el = buildElement(buildObj(star));
-
+            el.style.left = `${offsetX}px`;
+            el.style.transitionDuration = `${8 + Math.random() * 4}s`;
             galleryMain.appendChild(el);
             setTimeout(() => {
+                el.setAttribute('class', 'starData move');
+            }, 1000);
+            setTimeout(() => {
                 galleryMain.removeChild(el);
-            }, 5000);
+            }, 10000);
+            offsetX = (offsetX + 300) % 800;
         }
     };
 })();
