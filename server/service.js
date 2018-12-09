@@ -1,9 +1,11 @@
 "use strict";
 const log = require('./util').log,
     fs = require('fs'),
+    processClassification = require('./classification').process,
     DATA_FILE = '../data/data.csv';
 
 let data, dataCount;
+
 
 function processRow(row) {
     const parts = row.split(',');
@@ -14,7 +16,7 @@ function processRow(row) {
         Number(parts[2]) * 3.26156,   // Distance in Light Years
         Number(parts[3]),   // Apparent Magnitude
         Number(parts[4]),   // Absolute Magnitude
-        parts[5],           // Spectral Class
+        processClassification(parts[5]),           // Spectral Class
         Number(parts[6]),   // RA Radians
         Number(parts[7]),   // DEC Radians
         parts[8]            // Constellation
@@ -26,6 +28,7 @@ exports.init = () => {
 
     data = fs.readFileSync(DATA_FILE).toString().split("\n").map(processRow);
     dataCount = data.length;
+
 
     log(`Service initialisation complete, read ${dataCount} objects from ${DATA_FILE}`);
 };
