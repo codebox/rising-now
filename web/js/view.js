@@ -131,13 +131,13 @@ const view = (() => {
     function buildElement(star) {
         const el = document.createElement('div');
         el.setAttribute('class', 'starData');
-        el.innerHTML = `<div class="infoText">${star.name} in ${star.constellation} Type ${star.type} Magnitude ${star.magnitude}</div>`;
+        el.innerHTML = `<div class="infoText">${star.name} in ${star.constellation} Type ${star.type.class.text} Magnitude ${star.magnitude}</div>`;
         return el;
     }
 
     function starTypeToColour(type) {
         //TODO see http://www.isthe.com/chongo/tech/astro/HR-temp-mass-table-byhrclass.html
-        const n = type.toUpperCase().substr(0, 2);
+        const n = type.class && type.class.text;
         return TYPES_TO_COLOURS[n] || 'white';
     }
 

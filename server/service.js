@@ -1,7 +1,7 @@
 "use strict";
 const log = require('./util').log,
     fs = require('fs'),
-    processClassification = require('./classification').process,
+    parseClass = require('stellar-classification-parser').parse,
     DATA_FILE = '../data/data.csv';
 
 let data, dataCount;
@@ -16,7 +16,7 @@ function processRow(row) {
         Number(parts[2]) * 3.26156,   // Distance in Light Years
         Number(parts[3]),   // Apparent Magnitude
         Number(parts[4]),   // Absolute Magnitude
-        processClassification(parts[5]),           // Spectral Class
+        parseClass(parts[5] || ''),           // Spectral Class
         Number(parts[6]),   // RA Radians
         Number(parts[7]),   // DEC Radians
         parts[8]            // Constellation
@@ -109,7 +109,7 @@ function process(latRadians, lngRadians, row){
 exports.calc = (latDegrees, lngDegrees) => {
     const latRadians = toRadians(latDegrees),
         lngRadians = toRadians(lngDegrees),
-        risingObjects = data.filter(row => rises(latRadians, row)).map(row => process(latRadians, lngRadians, row));
+        risingObjects = data.filter(row => rises(latRadians, row)).map(row => process(latRadians, lngRadians, row));//.filter((o,i) => i<100);
 
     risingObjects.sort((r1, r2) => r1[9] - r2[9]);
 
